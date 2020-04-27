@@ -1,0 +1,12 @@
+cx-Freeze==6.1
+et-xmlfile==1.0.1
+imutils==0.5.3
+mysql-connector-python==8.0.19
+numpy==1.18.1
+opencv-python==4.2.0.32
+Pillow==7.1.1
+pygame==1.9.6
+pytz==2019.3
+update==0.0.1
+virtualenv==20.0.13
+virtualenvwrapper-win==1.2.6
