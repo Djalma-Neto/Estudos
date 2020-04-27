@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="">
+	<title>VUEJS</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="app" v-if="status">{{nome}} tem {{idade}} anos e é do sexo {{sexo}}</div>
+
+	<form action="teste">
+		<button type="submit">VOLTAR</button>
+	</form>
+
+	<script src="https://unpkg.com/vue"></script>
+	<script >
+		var app = new Vue({
+			el:"#app",
+
+			data:{
+				nome:"Marcos",
+				idade:"20",
+				sexo:"Masculino",
+				status: true,
+			}
+
+		});
+
+	</script>
+</body>
+</html>

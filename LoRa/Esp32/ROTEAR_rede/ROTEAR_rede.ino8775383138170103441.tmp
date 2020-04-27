@@ -1,0 +1,69 @@
+
+#include <WiFi.h>;
+
+const char* ssid = "ESP32_ADS";
+const char* password = "19983010";
+WiFiServer server(80);
+int variavel;
+const int leitura = 2;
+void Connect_WiFi()
+{
+  WiFi.begin(ssid, password);
+  while(WiFi.status() != WL_CONNECTED)
+  {
+    Serial.println(".");
+    delay(100);
+  }
+  
+}
+
+void setup()
+{
+  pinMode(leitura,INPUT);
+  Serial.begin(115200);
+  WiFi.softAP(ssid, password);
+  IPAddress IP = WiFi.softAPIP();
+  Serial.print("AP IP address: ");
+  Serial.println(IP);
+  server.begin();
+}
+
+
+void loop()
+{
+  variavel = digitalRead(leitura);
+  WiFiClient html = server.available();
+
+
+/*SITE....*/
+  html.println("<!DOCTYPE html>");
+  Serial.println(variavel);
+  delay(500);
+  html.println("<html lang='pt-br'>");
+    
+  html.println("<head>");
+  html.println("<title>EVENTOS</title>");
+  html.println("<meta charset='UTF-8'/>");
+  html.println("<link rel = 'stylesheet' type='text/css' href='C:/Users/Djalma/Documents/ESA/ESP_WiFi/sdf.css'/>");
+  html.println("</head>");
+             
+  html.println("<body>");
+
+  html.println("<div id='app' v-if='status'>{{nome}} tem {{idade}} anos e é do sexo {{sexo}}</div>");
+
+  html.println("<script src='https://unpkg.com/vue'></script>");
+  html.println("<script> var app = new Vue({el:'#app',data:{nome:'João', idade:'20', sexo:'Masculino', status: true,}}");
+
+  </script>");
+  
+  html.println("</body>");
+  
+  html.println("</html>");
+}
+
+
+
+           
+
+
+           

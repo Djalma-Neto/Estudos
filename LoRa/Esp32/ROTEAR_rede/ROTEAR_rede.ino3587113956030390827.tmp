@@ -1,0 +1,100 @@
+#include <WiFi.h>;
+
+const char* ssid = "ESP32_ADS";
+const char* password = "19983010";
+WiFiServer server(80);
+const int leitura = 2;
+
+#define luz 18
+
+void Connect_WiFi()
+{
+  WiFi.begin(ssid, password);
+  while(WiFi.status() != WL_CONNECTED)
+  {
+    Serial.println(".");
+    delay(100);
+  }
+  
+}
+
+void setup()
+{
+  pinMode(luz,INPUT);
+  pinMode(leitura,INPUT);
+  Serial.begin(115200);
+  WiFi.softAP(ssid, password);
+  IPAddress IP = WiFi.softAPIP();
+  Serial.print("AP IP address: ");
+  Serial.println(IP);
+  server.begin();
+}
+
+
+void loop()
+{
+  int luminosidade = analogRead(luz);
+  int variavel = digitalRead(leitura);
+  Serial.println(variavel);
+  
+  Site(luminosidade);
+}
+
+
+void Site(int luminosidade){
+  char head = ' ';
+  char body = ' ';
+  char footer = ' ';
+  WiFiClient html = server.available();
+  html.println("<!DOCTYPE html>");
+  
+  delay(500);
+
+  head = 
+  ("<html lang='pt-br'>",
+  "<head>",
+  "<title>EVENTOS</title>
+  <meta charset='UTF-8'/>",
+  "</head>");
+  body = (
+  "<body>",
+  "<div id='app'>{{Luz}}</div>",
+  "<script src='https://unpkg.com/vue'></script>",
+  "<script> var app = new Vue({el:'#app',data:{Luz:",luminosidade,"}})</script>",
+  "</body>",
+  "</html>");
+
+  for(char x : Site){
+    HTML += x;
+  }
+
+  html.println(HTML);
+
+  /*
+  html.println("<html lang='pt-br'>");
+    
+  html.println("<head>");
+  html.println("<title>EVENTOS</title>");
+  html.println("<meta charset='UTF-8'/>");
+  html.println("<link rel = 'stylesheet' type='text/css' href='C:/Users/Djalma/Documents/ESA/ESP_WiFi/sdf.css'/>");
+  html.println("</head>");
+             
+  html.println("<body>");
+
+  html.println("<div id='app'>{{Luz}}</div>");
+
+  html.println("<script src='https://unpkg.com/vue'></script>");
+  html.println("<script> var app = new Vue({el:'#app',data:{Luz:",luminosidade,"}})</script>");
+  
+  html.println("</body>");
+  
+  html.println("</html>");
+  */
+}
+
+
+
+           
+
+
+           
