@@ -1,3 +1,6 @@
+# executar o comando "py -m pip install -r PyLibs.txt" no windows e "pip install -r PyLibs.txt" python 3.* no linux
+
+
 cx-Freeze==6.1
 et-xmlfile==1.0.1
 imutils==0.5.3
