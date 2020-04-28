@@ -1,0 +1,12 @@
+update==0.0.1
+imutils==0.5.3
+mysql-connector-python==8.0.19
+numpy==1.18.1
+opencv-python==4.2.0.32
+openpyxl==3.0.3
+Pillow==7.1.1
+pygame==1.9.6
+pyserial==3.4
+sqlparse==0.3.1
+virtualenv==20.0.13
+virtualenvwrapper-win==1.2.6
