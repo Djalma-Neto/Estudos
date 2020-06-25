@@ -4,7 +4,7 @@ import './App.css';
 import Bot from './Button';
 
 
-var nome = 'Hello World!'
+var Tag = 'Hello World!'
 
 function App() {
   return (
@@ -31,6 +31,7 @@ function Teste () {
   return (
     <div>
       <Bot />
+      {Tag}
     </div>
   )
 }
