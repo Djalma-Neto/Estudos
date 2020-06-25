@@ -45,3 +45,13 @@ button:hover {
   border-radius: 10px;
   background-color: rgb(95, 235, 188);
 }
+
+.Header div{
+  padding: 4px;
+}
+
+.Header li {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+}

@@ -1,48 +1,21 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Bot from './Button';
-
-
-var Tag = 'Hello World!'
+import Bot from './Button/Button';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <body>
+      <div class='Header'>
+  <div><h1>{ valor }</h1></div>
+        <div class='Btn'>
+          <li><Bot onClick={() => soma(5+5)} nome='5 + 5' /></li>
+          <li><Bot onClick= {sub(20-5)} nome='20 - 5' /></li>
+          <li><Bot onClick= '' nome='Btn3' /></li>
+        </div>
+      </div>
+    </body>
   );
 }
 
-function Teste () {
-  return (
-    <div>
-      <Bot />
-      {Tag}
-    </div>
-  )
-}
-
-function Full () {
-  return (
-    <div>
-      {Teste()}
-      {App()}
-    </div>
-  )
-}
-
-export default Full;
+export default App;
