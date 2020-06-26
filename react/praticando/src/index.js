@@ -2,43 +2,71 @@ import React, { Component }from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Bot from './Button/Button.js';
+import Valor from './Store/valores.js';
 import * as serviceWorker from './serviceWorker';
 
-class App extends Component {
+class Stores extends Component {
   constructor(props){
     super(props)
 
     this.state = {
-      valor: 0
-    }    
+      valor1: 'Desligado',
+      valor2: 'Desligado',
+      valor3: 'Desligado'
+    }
   }
-  soma = (a, b) => {
+  setValor1 = (val) => {
+    if (this.state.valor1.toLowerCase() === 'ligado') {
+      this.setState({
+        valor1: 'Desligado'
+      })
+      return 0
+    }
     this.setState({
-      valor: 10
+      valor1: 'Ligado'
     })
   }
-  sub = (a, b) => {
+  setValor2 = (val) => {
+    if (this.state.valor2.toLowerCase() === 'ligado') {
+      this.setState({
+        valor2: 'Desligado'
+      })
+      return 0
+    }
     this.setState({
-      valor: 15
+      valor2: 'Ligado'
+    })
+  }
+  setValor3 = (val) => {
+    if (this.state.valor3.toLowerCase() === 'ligado') {
+      this.setState({
+        valor3: 'Desligado'
+      })
+      return 0
+    }
+    this.setState({
+      valor3: 'Ligado'
     })
   }
   render() {
-    var {valor} = this.state
+    var {valor1, valor2, valor3} = this.state
     return(
       <body>
-        <h1>{ valor }</h1>
+        <h1>valor1: {valor1}</h1>
+        <h1>valor2: {valor2}</h1>
+        <h1>valor3: {valor3}</h1>
         <div class='Header'>
           <div class='Btn'>
-            <button onClick={() => this.soma(5 ,5)}>click</button>
-            <li><Bot onClick={() => this.soma(5 ,5)} nome='5 + 5' /></li>
-            <li><Bot onClick={() => this.sub(20 ,5)} nome='20 - 5' /></li>
-            <li><Bot onClick= '' nome='Btn3' /></li>
+            <li><Bot onClick={() => this.setValor1()} nome='Power_1' /></li>
+            <li><Bot onClick={() => this.setValor2()} nome='Power_2' /></li>
+            <li><Bot onClick={() => this.setValor3()} nome='Power_3' /></li>
           </div>
-       </div>
+      </div>
       </body>
     )
   }
 }
+
 const rootElement = document.getElementById('root')
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<Stores />, rootElement);
 

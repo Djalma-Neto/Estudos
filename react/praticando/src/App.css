@@ -38,6 +38,7 @@
 }
 
 button {
+  width: 100px;
   border-radius: 10px;
   background-color: aquamarine;
 }
