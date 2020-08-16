@@ -1,3 +1,7 @@
+> antes de tudo devem conter as seguintes pastas:
+
+data; feias; positivas; negativas
+
 > executar os arquivos em ordem:
 
 imgPositiva; download; imgFeias; renomear; listar
