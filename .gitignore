@@ -1,1 +1,7 @@
 react/praticando/node_modules
+
+OpenCV/treinar_cascade/data/*
+OpenCV/treinar_cascade/negativas/*
+OpenCV/treinar_cascade/positivas/*
+OpenCV/treinar_cascade/feias/*
+OpenCV/treinar_cascade/info/*

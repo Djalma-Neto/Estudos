@@ -1,0 +1,15 @@
+> executar os arquivos em ordem:
+
+imgPositiva; download; imgFeias; renomear; listar
+
+> para proseguir deve instalar a seguinte biblioteca:
+
+sudo apt install libopencv-dev
+
+> depois execute este comando para criar amostras:
+
+opencv_createsamples -img positivas/001.jpg -bg bg.txt -info info/info.lst -pngoutput info -maxxangle 0.5 -maxyangle 0.5 -maxzangle 0.5 -num 5500
+
+> apos criar as amostras execute esse comando para treinar o algoritmo (tempo => 2h):
+
+opencv_traincascade -data data -vec positives.vec -bg bg.txt -numPos 5000 -numNeg 2500 -numStages 10 -w 20 -h 20
