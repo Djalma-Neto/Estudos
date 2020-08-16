@@ -12,8 +12,25 @@ sudo apt install libopencv-dev
 
 > depois execute este comando para criar amostras:
 
-opencv_createsamples -img positivas/001.jpg -bg bg.txt -info info/info.lst -pngoutput info -maxxangle 0.5 -maxyangle 0.5 -maxzangle 0.5 -num 5500
+opencv_createsamples -img NOME_DO_ARQUIVO.jpg -bg ARQUIVO_LISTA_DE_IMAGENS_NEGATIVAS.txt -info DIRETÓRIO_SAÍDA/ARQUIVO_LISTA.lst -pngoutput DIRETÓRIO_SAÍDA -maxxangle ÂNGULO_MÁXIMO_EIXO_X -maxyangle ÂNGULO_MÁXIMO_EIXO_Y -maxzangle ÂNGULO_MÁXIMO_EIXO_Z -num NÚMERO_DE_IMAGENS_NEGATIVAS
+
+(opencv_createsamples -img positivas/001.jpg -bg bg.txt -info info/info.lst -pngoutput info -maxxangle 0.5 -maxyangle 0.5 -maxzangle 0.5 -num 992)
+
+> depois execute esse comando para criar um arquivo "positives.vec"
+
+opencv_createsamples -info DIRETÓRIO/ARQUIVO_LISTA.lst -num NÚMERO_DE_IMAGENS_NEGATIVAS -w LARGURA_DA_AMOSTRA -h ALTURA_DA_AMOSTRA -vec ARQUIVO_VETORES
+
+(opencv_createsamples -info info/info.lst -num 992 -w 20 -h 20 -vec positives.vec)
 
 > apos criar as amostras execute esse comando para treinar o algoritmo (tempo => 2h):
 
-opencv_traincascade -data data -vec positives.vec -bg bg.txt -numPos 5000 -numNeg 2500 -numStages 10 -w 20 -h 20
+opencv_traincascade -data PASTA_DESTINO -vec VETOR.vec -bg bg.txt -numPos (NÚMERO_DE_IMAGENS - 200) -numNeg METADE_DO_NUMPOS -numStages NÚMERO_DE_ESTAGIOS_DO_TREINO -w LARGURA_DA_AMOSTRA -h ALTURA_DA_AMOSTRA
+
+(opencv_traincascade -data data -vec positives.vec -bg bg.txt -numPos 792 -numNeg 396 -numStages 10 -w 20 -h 20)
+
+
+
+
+
+
+
