@@ -7,3 +7,4 @@ OpenCV/treinar_cascade/vetores/*
 OpenCV/treinar_cascade/infos/*
 OpenCV/treinar_cascade/data/*
 Django/venv/*
+Django/API/db.*
