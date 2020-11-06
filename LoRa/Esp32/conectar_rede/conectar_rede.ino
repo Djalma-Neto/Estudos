@@ -1,69 +1,72 @@
 #include <WiFi.h>
-#include <WiFiClient.h>
-#include <WebServer.h>
-
-#define luz 32
-
-WiFiServer server(80);
-
-
 const char* ssid = "Fabiano";
 const char* password =  "Arduino5432112345";
+const int iluminacao = 27;
+int last = 1000;
+boolean val = false;
+String ligar;
+WiFiServer server(8082);
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
 void setup() {
+  pinMode(iluminacao, INPUT);
   Serial.begin(115200);
-  pinMode(luz,INPUT);
-  
-  Conectar(ssid, password);
-  server.begin();
-  Serial.println("Server HTTP inicializado");
-}
-//------------------------------------------------------------------------------------------------------------------------------------------------ 
-void loop() {
-  delay(500);
-  
-  int luminosidade = digitalRead(luz);
-  Site(luminosidade);
-  
- }
-//------------------------------------------------------------------------------------------------------------------------------------------------
-void Conectar(const char* ssid, const char* password){
-  WiFi.mode(WIFI_STA); //Conectar no wifi
-  WiFi.begin(ssid, password);
- 
-  Serial.println("Conectando a: ");
-  Serial.print(ssid);
- 
-  while(WiFi.waitForConnectResult() != WL_CONNECTED){      
-      Serial.print(".");
-      delay(1000);
-    }
-  Serial.print("Conectado em: ");
+  Serial.print("Conectando-se a ");
   Serial.println(ssid);
-  Serial.print("IP LOCAL: ");
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.println("WiFi conectada.");
+  Serial.println("Endereço de IP: ");
   Serial.println(WiFi.localIP());
+  server.begin();
 }
-//------------------------------------------------------------------------------------------------------------------------------------------------
-void Site(int luminosidade){
-  Serial.println(luminosidade);
-  WiFiClient html = server.available();
-  html.println("<!DOCTYPE html>");
-  html.println("<html lang='pt-br'>");
-  html.println("<head>");
-  html.println("<title>EVENTOS</title>");
-  html.println("<meta charset='UTF-8'/>");
-  html.println("<link rel = 'stylesheet' type='text/css' href='C:/Users/Djalma/Documents/ESA/ESP_WiFi/teste.css'/>");
-  html.println("</head>");
-  
-  html.println("<body>");
-  
-  html.println("<div id='app'>{{luz}}</div>");
-  html.println("<script src='https://unpkg.com/vue'></script>");
-  html.println("<script> var app = new Vue({el:'#app',data:{luz:"+String(luminosidade)+"}})</script>");
-  
-  
-  html.println("</body>");
-  
-  html.println("</html>");
+
+void loop() {
+  int ilum = analogRead(iluminacao);
+  if((millis()-last) > 1000){
+    Serial.println(ilum);
+    last = millis();
+  }
+  WiFiClient client = server.available();
+  if (client) {
+    Serial.println("New Client.");
+    String currentLine = "";
+    while (client.connected()) {
+      if (client.available()) {
+        char c = client.read();
+        Serial.write(c);
+        if (c == '\n') {
+          if (currentLine.length() == 0) {
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-type:text/html");
+            client.println();
+            client.print("<a href='/ON'>LIGAR</a>");
+            client.print("<a href='/OFF'>DESLIGAR</a><br>");
+            client.print("<div>LUMINOSIDADE: "+String(ilum)+"</div><br>");
+            client.print("<a href='/'>update</a><br>");
+            client.print("<div>"+ligar+"</div>");
+            client.println();
+            break;
+          } else {
+            currentLine = "";
+          }
+        } else if (c != '\r') {
+          currentLine += c;
+        }
+        if (currentLine.endsWith("GET /ON")) {
+          ligar = "ON";
+        }
+        if (currentLine.endsWith("GET /OFF")) {
+          ligar = "OFF";
+        }
+      }
+    }
+    client.stop();
+    Serial.println("Client Disconnected.");
+  }
 }
