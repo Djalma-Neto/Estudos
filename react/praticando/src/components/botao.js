@@ -1,6 +1,5 @@
 // esse arquivo pode ser JSX ou JS
 
-var name = 'Click'
 function click() {
     console.log('click')
 }
