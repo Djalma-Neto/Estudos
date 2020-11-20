@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+</head>
+<body>
+  <script type="text/x-template" id="app-template">
+    <v-app>
+      <template>
+        <v-card class="blue lighten-5" style="height: 100%;">
+          <v-bottom-navigation
+            class="blue lighten-4 text-center mb-2"
+            :value="value"
+            color="teal"
+            grow
+          >
+            <div class="pa-3 font-weight-bold text-center">TIPOS DE SISTEMAS OPERACIONAIS</div>
+            
+            
+          </v-bottom-navigation>
+
+          <v-card class="ma-5 pa-2 blue lighten-4">
+            <div>
+              A função de um sistema operacional é basicamente executar e controlar tarefas básicas 
+              como por exemplo gerenciar arquivos, uso da memória, entre outros. Dessa forma um SO (Sistema Operacional) 
+              funciona como gerenciador de todos o recursos da máquina, dessa forma atuando como uma interface 
+              responsável pela interação do usuário com a máquina, ele basicamente gerencia essa interação. 
+              Dessa forma de acordo com a necessidade surgiram vários tipos de SÓ, cada um voltado para uma necessidade 
+              específica mas com o mesmo papel de atuar como gerenciador.
+            </div>
+            <div class="py-3">
+              Logo abaixo listamos os tipos de SO mais utilizados atualmente:
+            </div>
+
+            <v-card class="mt-3">
+              <v-expansion-panels class="blue lighten-4">
+                <v-expansion-panel
+                  v-for="(item, index) in sistemas"
+                  :key="index"
+                >
+                  <v-expansion-panel-header class="font-weight-bold blue lighten-3">
+                    {{item.nome}}
+                  </v-expansion-panel-header>
+
+                  <v-expansion-panel-content class="font-weight-light blue lighten-3">
+                    {{ item.inform }}
+                    <div class="text-center">
+                      <img class="ma-3 px-2" :alt="item.img.desc" :src="item.img.src" style="width: 90%; heigth: 90%; max-width: 500px; max-height: 500px;" />
+                    </div>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
+            </v-card>
+          </v-card>
+        </v-card>
+
+        <v-card>
+          <v-footer
+            class="blue lighten-4"
+            absolute
+            class="font-weight-medium"
+          >
+            <v-col
+              class="text-center blue lighten-4"
+              cols="12"
+            >
+              {{ new Date().getFullYear() }} — <strong>Atividade SD</strong>
+            </v-col>
+          </v-footer>
+        </v-card>
+      </template>
+    </v-app>
+  </script>
+
+<div id="app"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script src="js.js"></script>
+</body>
+</html>
