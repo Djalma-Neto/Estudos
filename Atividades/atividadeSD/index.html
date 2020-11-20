@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8"/>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
@@ -51,6 +52,21 @@
                     <div class="text-center">
                       <img class="ma-3 px-2" :alt="item.img.desc" :src="item.img.src" style="width: 90%; heigth: 90%; max-width: 500px; max-height: 500px;" />
                     </div>
+                    <div>
+                      <strong>Vantagens:</strong>
+                      <div v-for="(vant, index) in item.vantagem" :key="index">
+                        <v-divider></v-divider>
+                        <div class="font-weight-light my-2 ml-4">{{vant}}</div>
+                      </div>
+                    </div>
+                    <br>
+                    <div>
+                      <strong>Desvantagens:</strong>
+                      <div v-for="(dev, index) in item.desvantagem" :key="index">
+                        <v-divider></v-divider>
+                        <div class="font-weight-light my-2 ml-4">{{dev}}</div>
+                      </div>
+                    </div>
                   </v-expansion-panel-content>
                 </v-expansion-panel>
               </v-expansion-panels>
@@ -69,6 +85,10 @@
               cols="12"
             >
               {{ new Date().getFullYear() }} — <strong>Atividade SD</strong>
+              <div>
+                As informações presentes nessa pagina foram retiradas do site 
+                <a href="https://www.geeksforgeeks.org/types-of-operating-systems/" target="blank">GeeksforGeeks</a>
+              </div>
             </v-col>
           </v-footer>
         </v-card>
