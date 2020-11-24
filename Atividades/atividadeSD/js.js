@@ -29,6 +29,23 @@ const App = {
         ]
       },
       {
+        nome: 'Sistema Operacional de Informação Centralizado',
+        inform: 'É aquele executado em uma coleção de máquinas, que se utiliza de seus recursos individuais e possui uma máquina servidora que centraliza todas as informações. São sistemas que possuem pouco poder de processamento sequencial (tempo compartilhado) e necessitam de um mainframe para que possa funcionar com qualidade. Porém, por maior que seja a velocidade de processamento de um mainframe, ele jamais conseguirá alcançar o poder de processamento de vários microcomputadores interligados, como se fosse um único sistema.',
+        img: {
+          src: 'imagens/centralizado.jpg',
+          desc: 'Imagem descritiva de um sistema operacional de Informação Centralizado.'
+        },
+        vantagem: [
+          'Possuem um único host que fornece alto grau de segurança.',
+          'Não há necessidade de um diretório distribuído.'
+        ],
+        desvantagem: [
+          'Todos os acessos aos dados realizados por outro que não seja o host, onde o banco de dados está, gera alto custo de comunicação.',
+          'O host em que o banco de dados está localizado pode ainda criar um "gargalo" dependendo da quantidade de acessos simultâneos.',
+          'Podem acontecer problemas de disponibilidade dos dados, se o host, onde os dados estão armazenados, sair do ar.'
+        ]
+      },
+      {
         nome: 'Sistemas Operacionais de Compartilhamento de Tempo',
         inform: 'Cada tarefa tem algum tempo para ser executada, para que todas as tarefas funcionem sem problemas. Cada usuário obtém tempo de CPU à medida que usa um único sistema. Esses sistemas também são conhecidos como Sistemas Multitarefa. A tarefa pode ser de um único usuário ou de diferentes usuários também. O tempo que cada tarefa chega para ser executada é chamado de quantum. Após o término desse intervalo de tempo, o sistema operacional muda para a próxima tarefa.',
         img: {
@@ -96,10 +113,12 @@ const App = {
           desc: 'Imagem descritiva de um Sistema operacional distribuído'
         },
         vantagem: [
-          'A falha de um não afetará a comunicação da outra rede, pois todos os sistemas são independentes uns dos outros.',
+          'Tolerância a falhas ja que a falha de um não afetará a comunicação da outra rede, pois todos os sistemas são independentes uns dos outros.',
           'O correio eletrônico aumenta a velocidade de troca de dados.',
           'Como os recursos estão sendo compartilhados, a computação é altamente rápida e durável.',
-          'A carga no computador host reduz.',
+          'Aumento da capacidade de computação ja que a carga no computador host reduz.',
+          'Formar um supercomputador que normalmente sairia muito caro com computadores baratos e de baixo processamento .',
+          'Aumento da segurança.',
           'Esses sistemas são facilmente escaláveis, pois muitos sistemas podem ser facilmente adicionados à rede.',
           'O atraso no processamento de dados reduz.'
         ],
