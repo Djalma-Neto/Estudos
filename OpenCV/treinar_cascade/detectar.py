@@ -30,7 +30,7 @@ class Captura:
 
 			for(x,y,w,h) in face:
 	   	 		img = cv2.rectangle(img,(x,y),(x+w,y+h),(250,0,0),1)
-	   	 		cv2.putText(img, "Neto".format(), (x,y-20),cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+	   	 		cv2.putText(img, "Face".format(), (x,y-20),cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 		if (filtro):
 			val = cv2.GaussianBlur(img,(5,5),0)

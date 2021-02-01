@@ -20,7 +20,7 @@ if not os.path.exists('feias'):
 
 if not os.listdir('negativas'):
     os.system("python3 download.py")
-    os.system("python3 imgFeias.py")
+    os.system("python3 imgFeia.py")
     os.system("python3 renomear.py")
     
 
@@ -71,8 +71,8 @@ print('numPos: ',int(numPos))
 print('numNeg: ',int(numNeg))
 print('////////////////////////////////')
 opc = input('alterar valor de numPos e numNeg (N => não; S => sim)')
-if (opc == 'S' or opc == 'S') :
-    numEst = int(input('Estagios(min 10): '))
+if (opc == 'S' or opc == 's') :
+    numEst = int(input('Estagios(minimo 10): '))
     numPos = int(input('numPos: '))
     numNeg = int(input('numNeg: '))
 
