@@ -1,77 +1,4 @@
 import cv2
-import _thread
-
-img = cv2.imread(input('informe a imagem: '))
-img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-def imagem(img):
-	altura = img.shape[0]
-	largura = img.shape[1]
-	variancia = 15
-	pixel = ''
-	valor = []
-
-	for y in range(1,altura-1):
-	    for x in range(1,largura-1):
-
-	        cor = img[y,x]
-
-	        if(img[y,x] <= 255):
-
-	            if(img[y-1,x-1] > img[y,x]):
-	                pixel += '1'
-	            else:
-	                pixel += '0'
-
-	            if(img[y-1,x] > img[y,x]):
-	                pixel += '1'
-	            else:
-	                pixel += '0'
-
-	            if(img[y-1,x+1] > img[y,x]):
-	                pixel += '1'
-	            else:
-	                pixel += '0'
-
-	            if(img[y,x+1] > img[y,x]):
-	                pixel += '1'
-	            else:
-	                pixel += '0'
-
-	            if(img[y+1,x+1] > img[y,x]):
-	                pixel += '1'
-	            else:
-	                pixel += '0'
-
-	            if(img[y+1,x] > img[y,x]):
-	                pixel += '1'
-	            else:
-	                pixel += '0'
-
-	            if(img[y+1,x-1] > img[y,x]):
-	                pixel += '1'
-	            else:
-	                pixel += '0'
-
-	            if(img[y,x-1] > img[y,x]):
-	                pixel += '1'
-	            else:
-	                pixel += '0'
-
-	            valor.append(pixel)
-	            pixel = ''
-
-	print (valor[1000])
-	return 0
-
-_thread.start_new_thread(imagem, (img,))
-cv2.imshow('imagem',img)
-
-
-cv2.waitKey()
-
-
-'''
 imagem = cv2.VideoCapture(0)
 
 while True:
@@ -103,4 +30,3 @@ while True:
 
 video.release()
 cv2.destroyAllWindows()
-'''

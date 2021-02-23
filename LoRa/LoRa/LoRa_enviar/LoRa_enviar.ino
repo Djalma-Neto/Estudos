@@ -1,35 +1,29 @@
 #include <SoftwareSerial.h>
 
 SoftwareSerial lora(18,19); // TX, RX
-const int T = 1000;
+const int led = 13;
+const int T = 2000;
 int ultimo = 0;
-
 int cont = 0;
 
-#define M0 26
-#define M1 27
-
 void setup(){
-  pinMode(M0,OUTPUT);
-  pinMode(M1,OUTPUT);
+  pinMode(led, OUTPUT);
   Serial.begin(9600);
   lora.begin(9600);
 }
  
 void loop(){
-  digitalWrite(M0,LOW);
-  digitalWrite(M1,LOW);
-  String menssagem = (String)"olá"+" "+cont;
+  cont++;
+  String menssagem = ("MENSSAGEM - " + String(cont));
   Enviar(menssagem);
 }
 
 void Enviar(String menssagem){
-  if(menssagem == "")return;
+  if(menssagem == NULL)return;
   while (true){
     if (millis() - ultimo > T){
-        lora.print(menssagem);
-        Serial.println("Enviando: " + menssagem);
-        cont++;
+        lora.println(menssagem);
+        Serial.println("ENVIADO: " + menssagem);
       }
       else{
         return;
